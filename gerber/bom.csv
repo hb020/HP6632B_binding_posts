@@ -1,0 +1,8 @@
+Designator,Footprint,Quantity,Value,LCSC Part #
+"BP1, BP2, BP3, BP4, BP5",MountingHole_3.5mm_Pad,5,Conn_01x01,
+"C603, C604",C_Rect_L13.0mm_W5.0mm_P10.00mm_FKS3_FKP3_MKS4,2,4.7n,
+"C605, C606, C607, C608",C_Disc_D7.5mm_W4.4mm_P5.00mm,4,220p,
+J1,TestPoint_THTPad_D4.0mm_Drill2.0mm,1,Conn_01x01,
+J615,Molex_KK-396_A-41791-0004_1x04_P3.96mm_Vertical,1,Conn_01x04_Male,
+"L601, L602, L603, L604, L605, L606",L_1008_2520Metric_Pad1.43x2.20mm_HandSolder,6,150n,
+LOGO1,OSHW-Logo_7.5x8mm_SilkScreen,1,Logo_Open_Hardware_Small,
