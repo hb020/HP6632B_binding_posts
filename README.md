@@ -11,7 +11,7 @@ The components chosen allow the board to be used on all variants of the HP 663xB
 - EZ-Hook 9406 ([Digikey](https://www.digikey.fr/en/products/detail/e-z-hook/9406/574036)) (only to be found in red and black as a set or individually under the name EZ-Hook 9280BLK or 9280RED)
 
 The final result looks like this:
-![HP 66332A with binding posts](images/final.jpg)
+![HP 66332A with binding posts](images/final.png)
 
 The following changes were made to Patrick Baus's original version:
 - the terminals are moved around to match a more standard layout.
