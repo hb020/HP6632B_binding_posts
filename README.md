@@ -13,6 +13,8 @@ The components chosen allow the board to be used on all variants of the HP 663xB
 The final result looks like this:
 ![HP 66332A with binding posts](images/final.png)
 
+![HP 66332A inside](images/inside.jpg)
+
 The following changes were made to Patrick Baus's original version:
 - the terminals are moved around to match a more standard layout.
 - added documentation about the connectivity to the main board.
@@ -37,6 +39,8 @@ KiCAD schematic libraries: https://github.com/PatrickBaus/KiCad-libraries
 A "HP 66xxA 65xxA PSU Front Panel Binding Post Adapter" plate from [NearFarMedia](https://www.thingiverse.com/thing:4299873) is recommended. It is also included in the FreeCad file. The slots for the binding posts might be a bit tighter, but it works superbly.
 
 I'd also recommend to look at [Barbouri's efforts](https://www.barbouri.com/2021/04/23/hewlett-packard-agilent-6632b-upgrade/) for his upgrade.
+
+You may want to combine this with the [option 760 relay board](https://github.com/hb020/HP6632B_relay_board).
 
 License
 -------
