@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContinuousLabel Version="8.0" Units="twips">
+  <PaperOrientation>Landscape</PaperOrientation>
+  <Id>Tape12mm</Id>
+  <PaperName>12mm</PaperName>
+  <LengthMode>Auto</LengthMode>
+  <LabelLength>1960</LabelLength>
+  <RootCell>
+    <Length>760</Length>
+    <LengthMode>Auto</LengthMode>
+    <BorderWidth>8</BorderWidth>
+    <BorderStyle>Solid</BorderStyle>
+    <BorderColor Alpha="255" Red="0" Green="0" Blue="0"/>
+    <SubcellsOrientation>Horizontal</SubcellsOrientation>
+    <Subcells>
+      <Cell>
+        <TextObject>
+          <Name>TEXT</Name>
+          <ForeColor Alpha="255" Red="0" Green="0" Blue="0"/>
+          <BackColor Alpha="255" Red="255" Green="255" Blue="255"/>
+          <LinkedObjectName></LinkedObjectName>
+          <Rotation>Rotation0</Rotation>
+          <IsMirrored>False</IsMirrored>
+          <IsVariable>False</IsVariable>
+          <HorizontalAlignment>Center</HorizontalAlignment>
+          <VerticalAlignment>Middle</VerticalAlignment>
+          <TextFitMode>None</TextFitMode>
+          <UseFullFontHeight>True</UseFullFontHeight>
+          <Verticalized>False</Verticalized>
+          <StyledText>
+            <Element>
+              <String>OPTION</String>
+              <Attributes>
+                <Font Family="Arial" Size="10" Bold="True" Italic="False" Underline="False" Strikeout="False"/>
+                <ForeColor Alpha="255" Red="0" Green="0" Blue="0"/>
+              </Attributes>
+            </Element>
+            <Element>
+              <String>
+</String>
+              <Attributes>
+                <Font Family="Arial" Size="12" Bold="True" Italic="False" Underline="False" Strikeout="False"/>
+                <ForeColor Alpha="255" Red="0" Green="0" Blue="0"/>
+              </Attributes>
+            </Element>
+            <Element>
+              <String>☑︎</String>
+              <Attributes>
+                <Font Family=".SF NS" Size="10" Bold="True" Italic="False" Underline="False" Strikeout="False"/>
+                <ForeColor Alpha="255" Red="0" Green="0" Blue="0"/>
+              </Attributes>
+            </Element>
+            <Element>
+              <String>020 </String>
+              <Attributes>
+                <Font Family="Arial" Size="10" Bold="True" Italic="False" Underline="False" Strikeout="False"/>
+                <ForeColor Alpha="255" Red="0" Green="0" Blue="0"/>
+              </Attributes>
+            </Element>
+            <Element>
+              <String>☑︎</String>
+              <Attributes>
+                <Font Family=".SF NS" Size="10" Bold="True" Italic="False" Underline="False" Strikeout="False"/>
+                <ForeColor Alpha="255" Red="0" Green="0" Blue="0"/>
+              </Attributes>
+            </Element>
+            <Element>
+              <String>760</String>
+              <Attributes>
+                <Font Family="Arial" Size="10" Bold="True" Italic="False" Underline="False" Strikeout="False"/>
+                <ForeColor Alpha="255" Red="0" Green="0" Blue="0"/>
+              </Attributes>
+            </Element>
+          </StyledText>
+        </TextObject>
+        <ObjectMargin Left="0" Right="0" Top="0" Bottom="0"/>
+        <Length>1346.867</Length>
+        <LengthMode>Auto</LengthMode>
+        <BorderWidth>0</BorderWidth>
+        <BorderStyle>Solid</BorderStyle>
+        <BorderColor Alpha="255" Red="0" Green="0" Blue="0"/>
+      </Cell>
+    </Subcells>
+  </RootCell>
+</ContinuousLabel>

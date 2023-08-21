@@ -16,6 +16,7 @@ The final result looks like this:
 ![HP 66332A inside](images/inside.jpg)
 
 The following changes were made to Patrick Baus's original version:
+
 - the terminals are moved around to match a more standard layout.
 - added documentation about the connectivity to the main board.
 - the wire connections are moved to better align with the hole in the chassis behind the posts.
@@ -25,12 +26,18 @@ The following changes were made to Patrick Baus's original version:
 
 About
 -----
-The root folder contains the KiCAD files. 
-The gerber files can be found in the [/gerber](gerber/) folder. 
+The root folder contains the KiCAD files.
+
+The gerber files can be found in the [/gerber](gerber/) folder.
+
 A 3D model from FreeCAD can be found in the [/freecad](freecad/) folder. That model was used to determine the placement of the connector and the ground wire.
 
+Labels for a Dymo printer can be found in the [/labels](labels/) folder.
+
+Test scripts (via Prologix USB-GPIB) can be found in the [/testscripts](testscripts/) folder.
+
 Related Repositories and info
---------------------
+-----------------------------
 
 See the following repositories for more information
 
