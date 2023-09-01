@@ -11,7 +11,6 @@ DEBUG = False
 # SCPI Addresses:
 # Current source: USB, prologix USB-GPIB. Hence: not via pyvisa, as that is not stable for that adapter.
 ADDR_SOURCE_DEFAULT = "/dev/cu.usbmodem11101"
-ADDR_SOURCE_SUBADDR = "2"
 AUTOREAD = False
 # serial timeout: 20ms minimum
 SERIAL_TIMEOUT = 0.02
@@ -90,11 +89,10 @@ def inst_cs_write(cmd):
     return sendSerialCmd(cmd, False)
 
 
-def inst_cs_init():
+def inst_cs_init_serial():
     global ser
 
     port = None
-    addr = ADDR_SOURCE_SUBADDR
     baudrate = 38400  # 115200
     
     ports = serial_ports()
@@ -122,15 +120,24 @@ def inst_cs_init():
     else:
         sendSerialCmd("++auto 0", False)  # need for "++read eoi"
     sendSerialCmd("++eos 0", False)  # CR/LF is oes
-    sendSerialCmd("++addr " + addr, False)
     sendSerialCmd("++read", False)  # read all data until timeout. fenrir FW specific.
+    return True
+
+
+def inst_cs_init_device(addr):
+    
+    sendSerialCmd("++addr " + str(addr))
     
     inst_cs_write("*CLS")
     # check ID
     s = inst_cs_query("*IDN?").strip()
-    print(f"Device Id = {s}")
-    if ("6631B" not in s) and ("6632B" not in s) and ("66332A" not in s) and ("6633B" not in s) and ("6634B" not in s):
-        print(f'ERROR: device ID is unexpected: "{s}"')
+    if len(s) > 0:
+        print(f"Device {addr} = {s}")
+        if ("6631B" not in s) and ("6632B" not in s) and ("66332A" not in s) and ("6633B" not in s) and ("6634B" not in s):
+            print(f'ERROR: device ID is unexpected: "{s}"')
+            return False
+    else:
+        print(f"Device {addr} is absent")
         return False
 
     # output off, voltage 0V, current 0
@@ -141,7 +148,7 @@ def inst_cs_init():
     inst_cs_write("SOUR:CURR 0")
     s = inst_cs_query("SYST:ERR?").strip()
     if not s.startswith("+0"):
-        print(f'ERROR during init: "{s}"')
+        print(f'ERROR during init_device({addr}): "{s}"')
         return False
 
     return True
@@ -208,7 +215,7 @@ def closeMeasurements():
 # sets the current, and lets the PSU settle some time. This PSU has a tendency to take time to go to CC mode.
 def setVoltage(val, oldval=None):
     bNegative = False
-    sleeptime_s = 0.1
+    sleeptime_s = 0
     setval = abs(val)
     if val < 0:
         bNegative = True
@@ -219,6 +226,10 @@ def setVoltage(val, oldval=None):
         if oldval is None or oldval < 0:
             inst_cs_write("OUTP:REL:POL NORM")
             sleeptime_s += 0.4
+
+    if sleeptime_s > 0:      
+        time.sleep(sleeptime_s)
+        sleeptime_s = 0
 
     inst_cs_write(f"SOUR:VOLT {setval:.5f}")
     #s = inst_cs_query("SYST:ERR?").strip()
@@ -244,7 +255,7 @@ def setVoltage(val, oldval=None):
         return False   
     if bNegative:
         f = f * -1
-    print(f"Set V={val}, Measured V={f:.3f}, offset={(f-val):.3f}")
+    print(f"Set V={val:.3f}, Measured V={f:.3f}, offset={(f-val):.3f}")
     return True
 
 
@@ -269,24 +280,30 @@ def readDevices(test):
     global inst_target
 
     print("Opening PSU.")
-    if not inst_cs_init():
+    if not inst_cs_init_serial():
         return 1
+    
+    for addr in range(1, 5):
+        if inst_cs_init_device(addr):
+            print(f"Device {addr}: initialized.")
 
-    print("Init OK")
-    
-    initMeasurements()
-    maxv = int(getMaxVolts())
-    minv = int(getMinVolts())
-    stepv = 1
-    
-    print("Starting loop now")
-    oldv = None
-    for v in range(minv, maxv + stepv, stepv):
-        if not setVoltage(v, oldv):
-            break
-        oldv = v
-    print("Closing")
-    closeMeasurements()
+            initMeasurements()
+            maxv = getMaxVolts()
+            minv = getMinVolts()
+            stepv = (maxv - minv) / 20
+            if stepv < 1:
+                stepv = 1
+            
+            print("Looping through voltages:")
+            oldv = None
+            v = minv
+            while v <= maxv:
+                if not setVoltage(v, oldv):
+                    break
+                oldv = v
+                v += stepv
+            print("Closing")
+            closeMeasurements()
 
 
 if __name__ == "__main__":
