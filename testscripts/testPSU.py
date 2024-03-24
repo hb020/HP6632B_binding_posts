@@ -215,39 +215,44 @@ def closeMeasurements():
 # sets the current, and lets the PSU settle some time. This PSU has a tendency to take time to go to CC mode.
 def setVoltage(val, oldval=None):
     bNegative = False
-    sleeptime_s = 0
+    sleeptime_s = 0.5 # the time between set voltage and measure
     setval = abs(val)
     if val < 0:
         bNegative = True
         if oldval is None or oldval >= 0:
+            # avoid glitches, set output to 0, then reverse polarity
+            inst_cs_write("SOUR:VOLT 0")
             inst_cs_write("OUTP:REL:POL REV")
             sleeptime_s += 0.4
     else:
         if oldval is None or oldval < 0:
+            # avoid glitches, set output to 0, then reverse polarity
+            inst_cs_write("SOUR:VOLT 0")
             inst_cs_write("OUTP:REL:POL NORM")
             sleeptime_s += 0.4
 
+    inst_cs_write(f"SOUR:VOLT {setval:.5f}")
+    s = inst_cs_query("SYST:ERR?").strip()
+    if not s.startswith("+0"):
+        print(f'ERROR during setVoltage({val}): "{s}"')
+        return False
+    s = inst_cs_query("*OPC?").strip()
+    s = inst_cs_query("SYST:ERR?").strip()
+    if not s.startswith("+0"):
+        print(f'ERROR during setVoltage({val}) OPC: "{s}"')
+        return False
+    # print(f"setVoltage({val}) OPC={s}")    
+
+    # now measure
+    # wait the time requested by measurement plus the relay switchover
     if sleeptime_s > 0:      
         time.sleep(sleeptime_s)
         sleeptime_s = 0
-
-    inst_cs_write(f"SOUR:VOLT {setval:.5f}")
-    #s = inst_cs_query("SYST:ERR?").strip()
-    #if not s.startswith("+0"):
-    #    print(f'ERROR during setVoltage({val}): "{s}"')
-    #    return False
-    # time.sleep(sleeptime_s)
-    #s = inst_cs_query("*OPC?").strip()
-    #s = inst_cs_query("SYST:ERR?").strip()
-    #if not s.startswith("+0"):
-    #    print(f'ERROR during setVoltage({val}) OPC: "{s}"')
-    #    return False
-    #print(f"setVoltage({val}) OPC={s}")    
     v = inst_cs_query("MEAS:VOLT?").strip()
-    #s = inst_cs_query("SYST:ERR?").strip()
-    #if not s.startswith("+0"):
-    #    print(f'ERROR during setVoltage({val}) readback: "{s}"')
-    #    return False
+    s = inst_cs_query("SYST:ERR?").strip()
+    if not s.startswith("+0"):
+        print(f'ERROR during setVoltage({val}) readback: "{s}"')
+        return False
     try:
         f = float(v)
     except:
