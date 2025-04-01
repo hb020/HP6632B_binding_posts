@@ -7,7 +7,7 @@ This repository contains the schematics for a PCB to mount frontpanel binding po
 In contrast to the original option #20 PCB, this board breaks out the sense connections as well and also the chassis ground. This makes connecting multiple HP 663xB in parallel possible. On the downside, this requires connecting the sense pins externally.   
 
 The components chosen allow the board to be used on all variants of the HP 663xB family - even the 100 V 6634B. A variety of different binding posts can be used. There are HP/Agilent versions available on Ebay. Examples:
-- Pomona 4243-0 ([Digikey](https://www.digikey.de/en/products/detail/pomona-electronics/4243-0/604321) and 3760-5 ([Digikey](https://www.digikey.de/en/products/detail/pomona-electronics/3760-5/736554)).
+- Pomona 4243-0 ([Digikey](https://www.digikey.de/en/products/detail/pomona-electronics/4243-0/604321)) and 3760-5 ([Digikey](https://www.digikey.de/en/products/detail/pomona-electronics/3760-5/736554)).
 - EZ-Hook 9406 ([Digikey](https://www.digikey.fr/en/products/detail/e-z-hook/9406/574036)) (only to be found in red and black as a set or individually under the name EZ-Hook 9280BLK or 9280RED)
 
 The final result looks like this:
