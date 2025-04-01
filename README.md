@@ -23,6 +23,7 @@ The following changes were made to Patrick Baus's original version:
 - the slot in the PCB for the front panel fixation screw is widened a bit to allow more freedom.
 - newer KiCad version (6.0).
 - added a FreeCAD model.
+- uses a 3D printed [Front Terminal Adapter](freecad/Front_Terminal_Adapter.stl) (also see below) for more rigidity.
 
 About
 -----
@@ -43,7 +44,7 @@ See the following repositories for more information
 
 KiCAD schematic libraries: https://github.com/PatrickBaus/KiCad-libraries
 
-A "HP 66xxA 65xxA PSU Front Panel Binding Post Adapter" plate from [NearFarMedia](https://www.thingiverse.com/thing:4299873) is recommended. It is also included in the FreeCad file. The slots for the binding posts might be a bit tighter, but it works superbly.
+A "HP 66xxA 65xxA PSU Front Panel Binding Post Adapter" plate from [NearFarMedia](https://www.thingiverse.com/thing:4299873) is recommended. It is also [included in the FreeCad file](freecad/Front_Terminal_Adapter.stl). The slots for the binding posts might be a bit tighter, but it works superbly.
 
 I'd also recommend to look at [Barbouri's efforts](https://www.barbouri.com/2021/04/23/hewlett-packard-agilent-6632b-upgrade/) for his upgrade.
 
